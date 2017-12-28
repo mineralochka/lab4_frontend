@@ -2,10 +2,10 @@ package com.pip.lab4.client;
 
 public class Checks {
     private Long id;
-    private double x;
-    private double y;
-    private double r;
-    private boolean result;
+    private Double x;
+    private Double y;
+    private Double r;
+    private Boolean result;
     private Long user;
 
     public Long getId() {
@@ -16,35 +16,35 @@ public class Checks {
         this.id = id;
     }
 
-    public double getX() {
+    public Double getX() {
         return x;
     }
 
-    public void setX(double x) {
+    public void setX(Double x) {
         this.x = x;
     }
 
-    public double getY() {
+    public Double getY() {
         return y;
     }
 
-    public void setY(double y) {
+    public void setY(Double y) {
         this.y = y;
     }
 
-    public double getR() {
+    public Double getR() {
         return r;
     }
 
-    public void setR(double r) {
+    public void setR(Double r) {
         this.r = r;
     }
 
-    public boolean isResult() {
+    public Boolean isResult() {
         return result;
     }
 
-    public void setResult(boolean result) {
+    public void setResult(Boolean result) {
         this.result = result;
     }
 
