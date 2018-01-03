@@ -30,7 +30,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="GlassFish 5.0.0" level="application_server_libraries" />
     <orderEntry type="library" name="gwt-user" level="project" />
-    <orderEntry type="library" name="com.google.code.gson:gson:2.8.2" level="project" />
     <orderEntry type="library" name="org.fusesource.restygwt:restygwt:2.2.2" level="project" />
     <orderEntry type="library" name="javax.ws.rs-api-2.1" level="project" />
   </component>

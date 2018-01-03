@@ -6,7 +6,7 @@ public class Checks {
     private Double y;
     private Double r;
     private Boolean result;
-    private Long user;
+    private Long userId;
 
     public Long getId() {
         return id;
@@ -48,11 +48,11 @@ public class Checks {
         this.result = result;
     }
 
-    public Long getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(Long user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

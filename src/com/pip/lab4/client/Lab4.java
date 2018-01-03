@@ -28,7 +28,7 @@ public class Lab4 implements EntryPoint {
     public void onModuleLoad() {
         Defaults.setServiceRoot("http://127.0.0.1:50000");
 
-        isLogged();
+        redirect();
 
         if (Document.get().getElementById("welcomeTable") != null) {
             final TextBox user = new TextBox();
@@ -47,7 +47,7 @@ public class Lab4 implements EntryPoint {
             register.addClickHandler(event -> register(user.getValue(), password.getValue()));
         }
         if (Document.get().getElementById("controlsTable") != null){
-            final String userId = Cookies.getCookie("user");
+            final String user = Cookies.getCookie("user");
             final ListBox x = new ListBox();
             final TextBox y = new TextBox();
             final ListBox r = new ListBox();
@@ -71,7 +71,7 @@ public class Lab4 implements EntryPoint {
             RootPanel.get("warning").add(warning);
             RootPanel.get("previousChecks").add(checksTable);
 
-            checkButton.addClickHandler(event -> check(userId, x.getSelectedItemText(), y.getValue(), r.getSelectedItemText()));
+            checkButton.addClickHandler(event -> check(user, x.getSelectedItemText(), y.getValue(), r.getSelectedItemText()));
             logoutButton.addClickHandler(event -> logout());
 
             checksTable.setText(0, 0, "x");
@@ -79,7 +79,7 @@ public class Lab4 implements EntryPoint {
             checksTable.setText(0, 2, "r");
             checksTable.setText(0, 3, "result");
 
-            fillTable(userId);
+            fillTable(user);
         }
     }
 
@@ -89,8 +89,16 @@ public class Lab4 implements EntryPoint {
         Window.Location.assign("/lab4/Lab4.html");
     }
 
-    private void isLogged(){
-        authorisationClient.login(Cookies.getCookie("user"), Cookies.getCookie("password"), new MethodCallback<Boolean>() {
+    private void redirect(){
+        String user = Cookies.getCookie("user");
+        if (user == null){
+            user = "user";
+        }
+        String password = Cookies.getCookie("password");
+        if (password == null){
+            password = "password";
+        }
+        authorisationClient.login(user, password, new MethodCallback<Boolean>() {
             @Override
             public void onFailure(Method method, Throwable throwable) {
 
@@ -165,12 +173,11 @@ public class Lab4 implements EntryPoint {
 
             @Override
             public void onSuccess(Method method, Boolean aBoolean) {
-                if (aBoolean){
+                if (aBoolean) {
                     Cookies.setCookie("user", user);
                     Cookies.setCookie("password", password);
                     Window.Location.assign("/lab4/main.html");
-                }
-                else {
+                } else {
                     //TODO error
                 }
             }
@@ -186,15 +193,13 @@ public class Lab4 implements EntryPoint {
 
             @Override
             public void onSuccess(Method method, Boolean aBoolean) {
-                if (aBoolean){
-                    Cookies.setCookie("uer", user);
+                if (aBoolean) {
+                    Cookies.setCookie("user", user);
                     Cookies.setCookie("password", password);
                     Window.Location.assign("/lab4/main.html");
+                } else {
+                    Window.alert("Error: id already taken!");
                 }
-                else{
-                    //TODO show "id already taken" or something
-                }
-
             }
         });
     }
