@@ -80,8 +80,13 @@ public class Lab4 implements EntryPoint {
             checksTable.setText(0, 3, "result");
 
             fillTable(user);
+            drawCanvas();
         }
     }
+
+    public static native void drawCanvas() /*-{
+        $wnd.drawCanvas(-2);
+    }-*/;
 
     private void logout() {
         Cookies.removeCookie("user");
